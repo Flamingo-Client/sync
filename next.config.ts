@@ -1,5 +1,4 @@
 import type { NextConfig } from 'next'
-import path from 'path'
 
 const cspHeader = [
   "default-src 'self'",
@@ -20,7 +19,6 @@ const nextConfig: NextConfig = {
       bodySizeLimit: '10mb',
     },
   },
-  outputFileTracingRoot: path.join(__dirname, '../../'),
   serverExternalPackages: ['@supabase/ssr'],
   async headers() {
     return [
