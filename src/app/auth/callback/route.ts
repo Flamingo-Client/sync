@@ -18,7 +18,9 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(`${origin}/login?error=${error.message}`)
   }
 
-  // Preserve sync token if present
-  const redirectUrl = token ? `${origin}${next}?token=${token}` : `${origin}${next}`
+  // If there's a sync token, go through the authorize flow to claim it
+  const redirectUrl = token
+    ? `${origin}/sync/authorize?token=${token}`
+    : `${origin}${next}`
   return NextResponse.redirect(redirectUrl)
 }

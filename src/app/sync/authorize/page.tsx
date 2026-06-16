@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { FlaskConical, Loader2, CheckCircle2, XCircle } from 'lucide-react'
+import { Loader2, XCircle } from 'lucide-react'
 
 function AuthorizeContent() {
   const searchParams = useSearchParams()
@@ -28,7 +28,7 @@ function AuthorizeContent() {
       if (user) {
         // User is authenticated, claim the token
         try {
-          const res = await fetch('/api/sync/token', {
+          const res = await fetch('/api/sync/claim', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ temp_token: token }),
@@ -71,27 +71,9 @@ function AuthorizeContent() {
   }
 
   if (status === 'authenticated') {
-    return (
-      <div className="flex min-h-screen items-center justify-center p-4">
-        <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/10">
-              <CheckCircle2 className="h-6 w-6 text-emerald-500" />
-            </div>
-            <CardTitle>Device Authorized!</CardTitle>
-            <CardDescription>
-              Your Flamingo client has been successfully linked to your account.
-              You can close this window and return to the app.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex justify-center">
-            <Button onClick={() => router.push('/dashboard')}>
-              Go to Dashboard
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    )
+    // Redirect to the completion page which auto-closes
+    router.push('/sync/complete?status=success')
+    return null
   }
 
   return (

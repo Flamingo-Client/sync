@@ -95,7 +95,7 @@ export function LoginForm() {
           return
         }
 
-        router.push('/dashboard')
+        router.push('/sync/complete?status=success')
       } else {
         router.push('/dashboard')
       }
