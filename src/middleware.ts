@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 
-const publicRoutes = ['/login', '/sync/authorize', '/sync/complete']
+const publicRoutes = ['/login', '/sync/authorize', '/sync/complete', '/auth/callback']
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
