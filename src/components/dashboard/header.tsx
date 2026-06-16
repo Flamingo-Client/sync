@@ -47,6 +47,9 @@ export function DashboardHeader() {
         <DropdownMenuContent align="end" className="w-56">
           <DropdownMenuLabel>{user?.email}</DropdownMenuLabel>
           <DropdownMenuSeparator />
+          <DropdownMenuItem onClick={() => router.push('https://flamingo-client.com/download')}>
+            Download Flamingo
+          </DropdownMenuItem>
           <DropdownMenuItem onClick={handleSignOut}>
             Sign Out
           </DropdownMenuItem>
